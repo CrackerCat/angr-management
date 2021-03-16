@@ -370,7 +370,7 @@ class Workspace:
                     }
                 ]
             }
-            r = requests.post("http://192.168.32.129:5000/varec", data=json.dumps(d))
+            r = requests.post("http://chessfrontend:3001/varec", data=json.dumps(d))
             print(json.dumps(d))
             try:
                 result = json.loads(r.text)
