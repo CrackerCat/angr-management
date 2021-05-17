@@ -39,6 +39,7 @@ from .dialogs.load_docker_prompt import LoadDockerPrompt, LoadDockerPromptError
 from .dialogs.new_state import NewState
 from .dialogs.about import LoadAboutDialog
 from .dialogs.preferences import Preferences
+from .dialogs.artifacts_inference import ArtifactsInference
 from .toolbars import StatesToolbar, AnalysisToolbar, FileToolbar
 from ..utils.io import isurl, download_url
 from ..errors import InvalidURLError, UnexpectedStatusCodeError
@@ -486,6 +487,11 @@ class MainWindow(QMainWindow):
     def view_proximity_for_current_function(self):
         if self.workspace is not None:
             self.workspace.view_proximity_for_current_function()
+
+    def infer_from_artifacts(self):
+        if self.workspace is not None:
+            dialog = ArtifactsInference(self.workspace, parent=self)
+            dialog.exec_()
 
     def interact(self):
         self.workspace.interact_program(self.workspace.instance.img_name)
